@@ -22,7 +22,7 @@ export default class SceneInit {
         // NOTE: Additional components.
         this.clock = undefined;
         this.stats = undefined;
-        this.controls = undefined;
+        // this.controls = undefined;
 
         // NOTE: Lighting is basically required.
         this.ambientLight = undefined;
@@ -53,7 +53,7 @@ export default class SceneInit {
         document.body.appendChild(this.renderer.domElement);
 
         this.clock = new THREE.Clock();
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+        // this.controls = new OrbitControls(this.camera, this.renderer.domElement);
         // this.stats = Stats();
         // document.body.appendChild(this.stats.dom);
 
@@ -75,7 +75,7 @@ export default class SceneInit {
         window.requestAnimationFrame(this.animate.bind(this));
         this.render();
         // this.stats.update();
-        this.controls.update();
+        // this.controls.update();
     }
 
     render() {

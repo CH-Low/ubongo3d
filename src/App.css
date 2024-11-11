@@ -6,3 +6,7 @@ body {
   align-items: center;
 }
 
+.rotateButton {
+  position: absolute;
+  top: 450px;
+}

@@ -1,53 +1,72 @@
-import { useEffect, useState } from 'react';
 import * as THREE from 'three';
+import { useEffect } from 'react';
 import SceneInit from './SceneInit';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import './App.css';
 
 function App() {
   const layout = new SceneInit('model');
-
+  let model, requestAnimationId;
   useEffect(() => {
     layout.initialize();
     layout.animate();
-  }, [])
+  }, []);
 
-  function add() {
-    let boxGeometry = new THREE.BoxGeometry(16, 16, 16);
-    const boxMaterial = new THREE.MeshNormalMaterial();
-    let boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
-    boxMesh.rotation.x = 0.45;
-    boxMesh.rotation.y = -0.25;
-    boxMesh.name = 'box';
-    layout.scene.add(boxMesh);
+  function loadModel(glbFile) {
+    const glftLoader = new GLTFLoader();
+    glftLoader.load(glbFile, (gltfScene) => {
+      model = gltfScene;
+      gltfScene.scene.position.x = 0;
+      gltfScene.scene.position.y = 5;
+      gltfScene.scene.position.z = 75;
+      gltfScene.scene.rotation.x = -1;
+      gltfScene.scene.rotation.y = 0;
+      gltfScene.scene.rotation.z = -50;
+      gltfScene.scene.scale.set(10, 10, 10);
+      layout.scene.add(gltfScene.scene);
+      // const animate = () => {
+      //   model.scene.rotation.z += 0.01;
+      //   requestAnimationId = requestAnimationFrame(animate);
+      // };
+      // animate();
+    });
   }
 
-  function remove() {
-    let selectedObject = layout.scene.getObjectByName('box');
-    layout.scene.remove(selectedObject);
-    if(!!selectedObject){
-      selectedObject.geometry.dispose();
-      selectedObject.material.dispose();  
+  function removeModel() {
+    if (!!model) {
+      model.scene.traverse(function (obj) {
+        if (obj instanceof THREE.Mesh) {
+          obj.geometry.dispose();
+          obj.material.dispose();
+          model.scene.remove(obj);
+        }
+      });
+      layout.scene.remove(model.scene);
+      cancelAnimationFrame(requestAnimationId);
     }
   }
 
-  function replace(){
-    remove()
-    let boxGeometry = new THREE.BoxGeometry(4,4,4);
-    const boxMaterial = new THREE.MeshNormalMaterial();
-    let boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
-    boxMesh.rotation.x = 0.45;
-    boxMesh.rotation.y = -0.25;
-    boxMesh.name = 'box';
-    layout.scene.add(boxMesh);
+  function replaceModel(glbFile) {
+    removeModel();
+    loadModel(glbFile);
   }
 
+  function rotate() {
+    if (!!model) {
+      model.scene.rotation.z += 0.45;
+    }
+  }
   return (
     <>
-      <canvas id="model" />
-      <button onClick={add}>Add</button>
-      <button onClick={remove}>Remove</button>
-      <button onClick={replace}>Replace</button>
+      <div className="buttonContainer">
+        <button onClick={() => replaceModel('/assets/1.glb')}>1</button>
+        <button onClick={() => replaceModel('/assets/2.glb')}>2</button>
+      </div>
+      <div>
+        <canvas id="model" />
+      </div>
+      <button className="rotateButton" onClick={rotate}>Rotate</button>
     </>
   )
 }
