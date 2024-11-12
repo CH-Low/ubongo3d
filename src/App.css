@@ -1,12 +1,181 @@
+:root {
+  --darkblue: #111A2D;
+  --lightpurple: #646cff;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-  margin: 0;
-  background-color: #111A2D;
+  background-color: var(--darkblue);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 400px;
+  margin: 10px auto 0;
+}
+
+.dropdownContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 400px;
+  margin: 10px auto 0;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  margin: 0 20px;
+}
+
+/* Selected item styling */
+.dropdownSelected {
+  padding: 10px 0;
+  cursor: pointer;
+  background-color: var(--lightpurple);
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* Arrow styling */
+.arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 8px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #fff;
+  /* Color of the arrow */
+  position: absolute;
+  top: 20px;
+  right: 8px;
+}
+
+.arrow.up {
+  transform: rotate(180deg);
+  /* Rotate the arrow when dropdown is open */
+}
+
+/* Dropdown menu styling */
+.dropdownMenu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--lightpurple);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+  max-height: 178px;
+  overflow-y: auto;
+}
+
+/* Dropdown item styling */
+.dropdownMenu li {
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.dropdownMenu li:hover {
+  background-color: #ddd;
+  color: #888;
+}
+
+/* Selected item color change */
+.dropdownSelected {
+  color: #fff;
+  width: 100%;
+}
+
+/* Scrollbar styling for dropdown */
+.dropdownMenu::-webkit-scrollbar {
+  width: 8px;
+  /* Width of the scrollbar */
+}
+
+.dropdownMenu::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Background of the track */
+  border-radius: 4px;
+  /* Rounded track corners */
+}
+
+.dropdownMenu::-webkit-scrollbar-thumb {
+  background-color: #888;
+  /* Color of the scrollbar thumb */
+  border-radius: 4px;
+  /* Rounded scrollbar corners */
+  border: 2px solid #f1f1f1;
+  /* Space around the thumb */
+}
+
+.dropdownMenu::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+  /* Darker color when hovered */
+}
+
+.button {
+  width: 100px;
+  margin: 5px;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+button:hover {
+  border-color: var(--lightpurple);
+}
+
+.active {
+  background-color: var(--lightpurple);
+}
+
+.canvasContainer {
+  position: relative;
+  display: inline-block;
+  width: 400px;
+}
+
 .rotateButton {
   position: absolute;
-  top: 450px;
+  top: 420px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 200px;
 }
