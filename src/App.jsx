@@ -8,13 +8,19 @@ import Dropdown from './Dropdown';
 
 
 function App() {
-  let requestAnimationId;
+  // const [requestAnimationId, setRequestAnimationId] = useState();
   const [buttonSelected, setButtonSelected] = useState('A');
   const [layout, setLayout] = useState();
   const [model, setModel] = useState();
+  const [level, setLevel] = useState([1, 1]);
 
   useEffect(() => {
     loadModel('/assets/1.glb');
+
+    // Cleanup function on component unmount
+    return () => {
+      removeModel();
+    };
   }, []);
 
   function loadModel(glbFile) {
@@ -33,9 +39,11 @@ function App() {
       gltfScene.scene.rotation.z = -50;
       gltfScene.scene.scale.set(10, 10, 10);
       newLayout.scene.add(gltfScene.scene);
+
       // const animate = () => {
-      //   model.scene.rotation.z += 0.01;
-      //   requestAnimationId = requestAnimationFrame(animate);
+      //   gltfScene.scene.rotation.z += 0.01;
+      //   const newRequestAnimationId = requestAnimationFrame(animate);
+      //   setRequestAnimationId(newRequestAnimationId);
       // };
       // animate();
       setLayout({ ...newLayout });
@@ -51,10 +59,10 @@ function App() {
           model.scene.remove(obj);
         }
       });
-      if(!!layout) {
+      if (!!layout) {
         layout.scene.remove(model.scene);
       }
-      cancelAnimationFrame(requestAnimationId);
+      // cancelAnimationFrame(requestAnimationId);
     }
   }
 
@@ -65,18 +73,32 @@ function App() {
   }
 
   function rotate() {
-    console.log(model);
     if (!!model) {
       model.scene.rotation.z += 0.45;
     }
   }
 
+  function changeDifficulty(value) {
+    const newLevel = [...level];
+    newLevel[0] = value;
+    newLevel[1] = 1;
+    setLevel(newLevel);
+    replaceModel('/assets/1.glb', 'A'); // TBC: retrieve the correct model   
+  }
+
+  function changeStage(value) {
+    const newLevel = [...level];
+    newLevel[1] = value;
+    setLevel(newLevel);
+    replaceModel('/assets/1.glb', 'A'); // TBC: retrieve the correct model
+  }
+
   return (
     <>
       <div className="dropdownContainer">
-        <Dropdown description={"1"} items={["1", "2", "3", "4"]} />
-        &ndash; 
-        <Dropdown description={"1"} items={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"]} />
+        <Dropdown description={level[0]} items={[1, 2, 3, 4]} onChange={changeDifficulty} />
+        &ndash;
+        <Dropdown description={level[1]} items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]} onChange={changeStage}/>
       </div>
       <div className="container">
         <button onClick={() => replaceModel('/assets/1.glb', 'A')} className={buttonSelected === 'A' ? 'button active' : 'button'}>A</button>

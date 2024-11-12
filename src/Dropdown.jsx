@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function Dropdown({description, items}) {
+export default function Dropdown({ description, items, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(description);
+  const [selectedItem, setSelectedItem] = useState();
+
+  useEffect(() => { 
+    setSelectedItem(description);
+  }, [description]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSelectItem = (item) => {
-    setSelectedItem(item);
+  const handleSelectItem = (value) => {
+    setSelectedItem(value);
     setIsOpen(false);
+    onChange(value);
   };
 
   return (
