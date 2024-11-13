@@ -19,3 +19,4 @@ Currently, two official plugins are available:
 2. **Export Settings**:
    - Set the format to **GLTF** for compatibility.
    - Change the orientation to **"Z is up"** to match standard 3D coordinate systems.
+   - Rotate Z 180 degree for the correct placement.

@@ -98,12 +98,17 @@ function App() {
       <div className="dropdownContainer">
         <Dropdown description={level[0]} items={[1, 2, 3, 4]} onChange={changeDifficulty} />
         &ndash;
-        <Dropdown description={level[1]} items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]} onChange={changeStage}/>
+        <Dropdown description={level[1]} items={[
+          1, 2, 3, 4, 5, 6, 7, 8, 9,
+          10, 11, 12, 13, 14, 15, 16, 17, 18,
+          19, 20, 21, 22, 23, 24, 25, 26, 27,
+          28, 29, 30, 31, 32, 33, 34, 35, 36,
+        ]} onChange={changeStage} />
       </div>
       <div className="container">
-        <button onClick={() => replaceModel('/assets/1.glb', 'A')} className={buttonSelected === 'A' ? 'button active' : 'button'}>A</button>
-        <button onClick={() => replaceModel('/assets/2.glb', 'B')} className={buttonSelected === 'B' ? 'button active' : 'button'}>B</button>
-        <button onClick={() => replaceModel('/assets/1.glb', 'C')} className={buttonSelected === 'C' ? 'button active' : 'button'}>C</button>
+        <button onClick={() => replaceModel('/assets/1-5A.glb', 'A')} className={buttonSelected === 'A' ? 'button active' : 'button'}>A</button>
+        <button onClick={() => replaceModel('/assets/1-5B.glb', 'B')} className={buttonSelected === 'B' ? 'button active' : 'button'}>B</button>
+        <button onClick={() => replaceModel('/assets/1-5C.glb', 'C')} className={buttonSelected === 'C' ? 'button active' : 'button'}>C</button>
         <button onClick={() => replaceModel('/assets/2.glb', 'D')} className={buttonSelected === 'D' ? 'button active' : 'button'}>D</button>
         <button onClick={() => replaceModel('/assets/1.glb', 'E')} className={buttonSelected === 'E' ? 'button active' : 'button'}>E</button>
         <button onClick={() => replaceModel('/assets/2.glb', 'F')} className={buttonSelected === 'F' ? 'button active' : 'button'}>F</button>
