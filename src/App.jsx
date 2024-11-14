@@ -96,6 +96,7 @@ function App() {
   return (
     <>
       <div className="dropdownContainer">
+        <img src={'/assets/blocks.png'} alt='blocks'/>
         <Dropdown description={level[0]} items={[1, 2, 3, 4]} onChange={changeDifficulty} />
         &ndash;
         <Dropdown description={level[1]} items={[
@@ -106,9 +107,9 @@ function App() {
         ]} onChange={changeStage} />
       </div>
       <div className="container">
-        <button onClick={() => replaceModel('/assets/1-5A.glb', 'A')} className={buttonSelected === 'A' ? 'button active' : 'button'}>A</button>
-        <button onClick={() => replaceModel('/assets/1-5B.glb', 'B')} className={buttonSelected === 'B' ? 'button active' : 'button'}>B</button>
-        <button onClick={() => replaceModel('/assets/1-5C.glb', 'C')} className={buttonSelected === 'C' ? 'button active' : 'button'}>C</button>
+        <button onClick={() => replaceModel('/assets/1-8A.glb', 'A')} className={buttonSelected === 'A' ? 'button active' : 'button'}>A</button>
+        <button onClick={() => replaceModel('/assets/1-8B.glb', 'B')} className={buttonSelected === 'B' ? 'button active' : 'button'}>B</button>
+        <button onClick={() => replaceModel('/assets/1-8C.glb', 'C')} className={buttonSelected === 'C' ? 'button active' : 'button'}>C</button>
         <button onClick={() => replaceModel('/assets/2.glb', 'D')} className={buttonSelected === 'D' ? 'button active' : 'button'}>D</button>
         <button onClick={() => replaceModel('/assets/1.glb', 'E')} className={buttonSelected === 'E' ? 'button active' : 'button'}>E</button>
         <button onClick={() => replaceModel('/assets/2.glb', 'F')} className={buttonSelected === 'F' ? 'button active' : 'button'}>F</button>
