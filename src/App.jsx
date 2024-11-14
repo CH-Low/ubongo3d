@@ -107,11 +107,11 @@ function App() {
         ]} onChange={changeStage} />
       </div>
       <div className="container">
-        <button onClick={() => replaceModel('/assets/1-17A.glb', 'A')} className={buttonSelected === 'A' ? 'button active' : 'button'}>A</button>
-        <button onClick={() => replaceModel('/assets/1-17B.glb', 'B')} className={buttonSelected === 'B' ? 'button active' : 'button'}>B</button>
-        <button onClick={() => replaceModel('/assets/1-17C.glb', 'C')} className={buttonSelected === 'C' ? 'button active' : 'button'}>C</button>
-        <button onClick={() => replaceModel('/assets/2.glb', 'D')} className={buttonSelected === 'D' ? 'button active' : 'button'}>D</button>
-        <button onClick={() => replaceModel('/assets/1.glb', 'E')} className={buttonSelected === 'E' ? 'button active' : 'button'}>E</button>
+        <button onClick={() => replaceModel('/assets/1-30A.glb', 'A')} className={buttonSelected === 'A' ? 'button active' : 'button'}>A</button>
+        <button onClick={() => replaceModel('/assets/1-30B.glb', 'B')} className={buttonSelected === 'B' ? 'button active' : 'button'}>B</button>
+        <button onClick={() => replaceModel('/assets/1-26C.glb', 'C')} className={buttonSelected === 'C' ? 'button active' : 'button'}>C</button>
+        <button onClick={() => replaceModel('/assets/1-2A.glb', 'D')} className={buttonSelected === 'D' ? 'button active' : 'button'}>D</button>
+        <button onClick={() => replaceModel('/assets/1-2A.glb', 'E')} className={buttonSelected === 'E' ? 'button active' : 'button'}>E</button>
         <button onClick={() => replaceModel('/assets/2.glb', 'F')} className={buttonSelected === 'F' ? 'button active' : 'button'}>F</button>
       </div>
       <div className='canvasContainer'>
