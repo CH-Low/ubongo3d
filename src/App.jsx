@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import './App.css';
 import Dropdown from './Dropdown';
-
+import { data } from './data';
 
 function App() {
   // const [requestAnimationId, setRequestAnimationId] = useState();
@@ -15,7 +15,7 @@ function App() {
   const [level, setLevel] = useState([1, 1]);
 
   useEffect(() => {
-    loadModel('/assets/1.glb');
+    loadModel('/assets/1-1A.glb');
 
     // Cleanup function on component unmount
     return () => {
@@ -66,38 +66,39 @@ function App() {
     }
   }
 
-  function replaceModel(glbFile, buttonValue) {
+  function replaceModel(levelValue, buttonValue) {
     removeModel();
-    loadModel(glbFile);
+    loadModel(`/assets/${levelValue.join('-')}${buttonValue}.glb`);
     setButtonSelected(buttonValue);
   }
 
   function rotate() {
     if (!!model) {
-      model.scene.rotation.z += 0.45;
+      model.scene.rotation.z -= 0.45;
     }
   }
 
   function changeDifficulty(value) {
     const newLevel = [...level];
     newLevel[0] = value;
-    newLevel[1] = 1;
     setLevel(newLevel);
-    replaceModel('/assets/1.glb', 'A'); // TBC: retrieve the correct model   
+    replaceModel(newLevel, 'A');
   }
 
   function changeStage(value) {
     const newLevel = [...level];
     newLevel[1] = value;
     setLevel(newLevel);
-    replaceModel('/assets/1.glb', 'A'); // TBC: retrieve the correct model
+    replaceModel(newLevel, 'A');
   }
+
+  const buttons = data[level.join('-')];
 
   return (
     <>
       <div className="dropdownContainer">
-        <img src={'/assets/blocks.png'} alt='blocks'/>
-        <Dropdown description={level[0]} items={[1, 2, 3, 4]} onChange={changeDifficulty} />
+        <img src={'/assets/blocks.png'} alt='blocks' />
+          <Dropdown description={level[0]} items={[1, 2, 3, 4]} onChange={changeDifficulty} />
         &ndash;
         <Dropdown description={level[1]} items={[
           1, 2, 3, 4, 5, 6, 7, 8, 9,
@@ -106,13 +107,17 @@ function App() {
           28, 29, 30, 31, 32, 33, 34, 35, 36,
         ]} onChange={changeStage} />
       </div>
-      <div className="container">
-        <button onClick={() => replaceModel('/assets/1-30A.glb', 'A')} className={buttonSelected === 'A' ? 'button active' : 'button'}>A</button>
-        <button onClick={() => replaceModel('/assets/1-30B.glb', 'B')} className={buttonSelected === 'B' ? 'button active' : 'button'}>B</button>
-        <button onClick={() => replaceModel('/assets/1-26C.glb', 'C')} className={buttonSelected === 'C' ? 'button active' : 'button'}>C</button>
-        <button onClick={() => replaceModel('/assets/1-2A.glb', 'D')} className={buttonSelected === 'D' ? 'button active' : 'button'}>D</button>
-        <button onClick={() => replaceModel('/assets/1-2A.glb', 'E')} className={buttonSelected === 'E' ? 'button active' : 'button'}>E</button>
-        <button onClick={() => replaceModel('/assets/2.glb', 'F')} className={buttonSelected === 'F' ? 'button active' : 'button'}>F</button>
+      <div className="buttonContainer">
+        {
+          buttons.map((button, index) =>
+          (
+            <button
+              key={index}
+              onClick={() => replaceModel(level, button)}
+              className={buttonSelected === button ? 'button active' : 'button'}>
+              {button}</button>
+          ))
+        }
       </div>
       <div className='canvasContainer'>
         <canvas id="model" />

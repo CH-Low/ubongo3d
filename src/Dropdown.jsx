@@ -1,9 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import useOutsideAlerter from './useOutsideAlerter';
 
 export default function Dropdown({ description, items, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState();
 
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef, ()=>setIsOpen(false));
+  
   useEffect(() => { 
     setSelectedItem(description);
   }, [description]);
@@ -19,7 +23,7 @@ export default function Dropdown({ description, items, onChange }) {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown" ref={wrapperRef}>
       <div
         className="dropdownSelected"
         onClick={toggleDropdown}
