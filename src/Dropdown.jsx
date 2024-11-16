@@ -3,14 +3,24 @@ import useOutsideAlerter from './useOutsideAlerter';
 
 export default function Dropdown({ description, items, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState();
+  const [selectedItem, setSelectedItem] = useState("");
 
   const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef, ()=>setIsOpen(false));
-  
-  useEffect(() => { 
+  const itemsRef = useRef([]);
+  useOutsideAlerter(wrapperRef, () => setIsOpen(false));
+
+  useEffect(() => {
     setSelectedItem(description);
   }, [description]);
+
+  useEffect(() => {
+    if (isOpen && selectedItem !== "") {
+      const selectedIndex = items.indexOf(selectedItem);
+      if (itemsRef.current[selectedIndex]) {
+        itemsRef.current[selectedIndex].focus();
+      }
+    }
+  }, [isOpen, selectedItem, items]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -21,6 +31,7 @@ export default function Dropdown({ description, items, onChange }) {
     setIsOpen(false);
     onChange(value);
   };
+
 
   return (
     <div className="dropdown" ref={wrapperRef}>
@@ -34,7 +45,12 @@ export default function Dropdown({ description, items, onChange }) {
       {isOpen && (
         <ul className="dropdownMenu">
           {items.map((item, index) => (
-            <li key={index} onClick={() => handleSelectItem(item)}>
+            <li
+              tabIndex="0"
+              key={index}
+              ref={(el) => (itemsRef.current[index] = el)}
+              onClick={() => handleSelectItem(item)}
+            >
               {item}
             </li>
           ))}

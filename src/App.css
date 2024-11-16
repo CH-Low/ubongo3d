@@ -52,15 +52,6 @@ img {
   margin: 0 20px;
 }
 
-/* Selected item styling */
-.dropdownSelected {
-  padding: 10px 0;
-  cursor: pointer;
-  background-color: var(--lightpurple);
-  text-align: center;
-  border-radius: 5px;
-}
-
 /* Arrow styling */
 .arrow {
   display: inline-block;
@@ -103,17 +94,25 @@ img {
   padding: 10px;
   cursor: pointer;
   text-align: center;
+  outline: none;
 }
 
-.dropdownMenu li:hover {
+.dropdownMenu li:hover,
+.dropdownMenu li:focus {
   background-color: #ddd;
   color: #888;
+  outline: none;
 }
 
 /* Selected item color change */
 .dropdownSelected {
   color: #fff;
   width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  background-color: var(--lightpurple);
+  text-align: center;
+  border-radius: 5px;
 }
 
 /* Scrollbar styling for dropdown */
