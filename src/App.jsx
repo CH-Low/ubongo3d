@@ -15,7 +15,7 @@ function App() {
   const [level, setLevel] = useState([1, 1]);
 
   useEffect(() => {
-    loadModel('/assets/1-1A.glb');
+    loadModel(`/assets/${level.join('-')}${buttonSelected}.glb`);
 
     // Cleanup function on component unmount
     return () => {
