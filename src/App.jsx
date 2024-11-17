@@ -15,7 +15,7 @@ function App() {
   const [level, setLevel] = useState([1, 1]);
 
   useEffect(() => {
-    loadModel(`/assets/${level.join('-')}${buttonSelected}.glb`);
+    loadModel(`/assets/level ${level[0]}/${level.join('-')}${buttonSelected}.glb`);
 
     // Cleanup function on component unmount
     return () => {
@@ -68,7 +68,7 @@ function App() {
 
   function replaceModel(levelValue, buttonValue) {
     removeModel();
-    loadModel(`/assets/${levelValue.join('-')}${buttonValue}.glb`);
+    loadModel(`/assets/level ${levelValue[0]}/${levelValue.join('-')}${buttonValue}.glb`);
     setButtonSelected(buttonValue);
   }
 
@@ -96,7 +96,7 @@ function App() {
 
   return (
     <>
-      <div className="dropdownContainer">
+      <div className="dropdown-container">
         <img src={'/assets/blocks.png'} alt='blocks' />
           <Dropdown description={level[0]} items={[1, 2, 3, 4]} onChange={changeDifficulty} />
         &ndash;
@@ -107,7 +107,7 @@ function App() {
           28, 29, 30, 31, 32, 33, 34, 35, 36,
         ]} onChange={changeStage} />
       </div>
-      <div className="buttonContainer">
+      <div className="button-container">
         {
           buttons.map((button, index) =>
           (
@@ -119,9 +119,9 @@ function App() {
           ))
         }
       </div>
-      <div className='canvasContainer'>
+      <div className='canvas-container'>
         <canvas id="model" />
-        <button className="rotateButton" onClick={rotate}>Rotate</button>
+        <button className="rotate-button" onClick={rotate}>Rotate</button>
       </div>
     </>
   )

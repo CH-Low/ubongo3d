@@ -6,7 +6,6 @@ export default function Dropdown({ description, items, onChange }) {
   const [selectedItem, setSelectedItem] = useState("");
 
   const wrapperRef = useRef(null);
-  const itemsRef = useRef([]);
   useOutsideAlerter(wrapperRef, () => setIsOpen(false));
 
   useEffect(() => {
@@ -15,9 +14,12 @@ export default function Dropdown({ description, items, onChange }) {
 
   useEffect(() => {
     if (isOpen && selectedItem !== "") {
+      const menuItems = wrapperRef.current?.querySelectorAll(".dropdown-item");
+      console.log(wrapperRef.current);
       const selectedIndex = items.indexOf(selectedItem);
-      if (itemsRef.current[selectedIndex]) {
-        itemsRef.current[selectedIndex].focus();
+
+      if (menuItems && menuItems[selectedIndex]) {
+        menuItems[selectedIndex].focus();
       }
     }
   }, [isOpen, selectedItem, items]);
@@ -36,23 +38,25 @@ export default function Dropdown({ description, items, onChange }) {
   return (
     <div className="dropdown" ref={wrapperRef}>
       <div
-        className="dropdownSelected"
+        className="dropdown-selected"
         onClick={toggleDropdown}
       >
         {selectedItem}
         <span className={`arrow ${isOpen ? 'up' : 'down'}`} />
       </div>
       {isOpen && (
-        <ul className="dropdownMenu">
+        <ul className="dropdown-menu">
           {items.map((item, index) => (
-            <li
-              tabIndex="0"
-              key={index}
-              ref={(el) => (itemsRef.current[index] = el)}
-              onClick={() => handleSelectItem(item)}
-            >
-              {item}
+            <li key={index}>
+              <button
+                className="dropdown-item"
+                onClick={() => handleSelectItem(item)}
+              >
+                {item}
+              </button>
             </li>
+
+
           ))}
         </ul>
       )}
