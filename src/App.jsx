@@ -72,9 +72,15 @@ function App() {
     setButtonSelected(buttonValue);
   }
 
-  function rotate() {
+  function rotateLeft() {
     if (!!model) {
       model.scene.rotation.z -= 0.45;
+    }
+  }
+
+  function rotateRight() {
+    if (!!model) {
+      model.scene.rotation.z += 0.45;
     }
   }
 
@@ -97,8 +103,7 @@ function App() {
   return (
     <>
       <div className="dropdown-container">
-        <img src={'/assets/blocks.png'} alt='blocks' />
-          <Dropdown description={level[0]} items={[1, 2, 3, 4]} onChange={changeDifficulty} />
+        <Dropdown description={level[0]} items={[1, 2, 3, 4]} onChange={changeDifficulty} />
         &ndash;
         <Dropdown description={level[1]} items={[
           1, 2, 3, 4, 5, 6, 7, 8, 9,
@@ -119,9 +124,17 @@ function App() {
           ))
         }
       </div>
+      <canvas id="model" />
+
       <div className='canvas-container'>
-        <canvas id="model" />
-        <button className="rotate-button" onClick={rotate}>Rotate</button>
+        <div className="buttons">
+          <button className="rotate-button" onClick={rotateLeft}>
+            <img className="button-image" src={'/assets/rotate-left.png'} alt={'rotate-left'} />
+          </button>
+          <button className="rotate-button" onClick={rotateRight}>
+            <img className="button-image" src={'/assets/rotate-right.png'} alt={'rotate-right'} />
+          </button>
+        </div>
       </div>
     </>
   )
