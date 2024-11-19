@@ -74,13 +74,13 @@ function App() {
 
   function rotateLeft() {
     if (!!model) {
-      model.scene.rotation.z -= 0.45;
+      model.scene.rotation.z += 0.45;
     }
   }
 
   function rotateRight() {
     if (!!model) {
-      model.scene.rotation.z += 0.45;
+      model.scene.rotation.z -= 0.45;
     }
   }
 
