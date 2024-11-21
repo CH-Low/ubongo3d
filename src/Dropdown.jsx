@@ -15,7 +15,6 @@ export default function Dropdown({ description, items, onChange }) {
   useEffect(() => {
     if (isOpen && selectedItem !== "") {
       const menuItems = wrapperRef.current?.querySelectorAll(".dropdown-item");
-      console.log(wrapperRef.current);
       const selectedIndex = items.indexOf(selectedItem);
 
       if (menuItems && menuItems[selectedIndex]) {
