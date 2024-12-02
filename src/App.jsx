@@ -26,9 +26,7 @@ function App() {
   // const results = useGetDoc(getSolutionsPromise);
 
   useEffect(() => {
-    const file = "https://firebasestorage.googleapis.com/v0/b/ubongo-3d-d2125.firebasestorage.app/o/level%201%2F1-1A.glb?alt=media&token=b1fc4338-56ac-4369-b26e-d35501c653cf";
-    // loadModel(`/assets/level ${level[0]}/${level.join('-')}${buttonSelected}.glb`);
-    loadModel(file);
+    loadModel(`/assets/level ${level[0]}/${level.join('-')}${buttonSelected}.glb`);
     // Cleanup function on component unmount
     return () => {
       removeModel();

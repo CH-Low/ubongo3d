@@ -1,12 +1,35 @@
-# React + Vite
+# Ubongo 3D
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a fan-made too desidned to show solutions.
 
-Currently, two official plugins are available:
+Note: There can be more than one alternate solutions, but I aim to keep the tool straigtforward and won't be adding additional features.
+![6226361205535128849](https://github.com/user-attachments/assets/163cc098-e5ad-410d-aef2-843ef21c11c8)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Disclaimer
 
+This is an unofficial app developed as a private project and is not affiliated with KOSMOS. This app only supports the 2021 English edition of Ubongo 3D.
+
+## Devlopment
+Developed in React with Vite.
+
+To run the project locally, follow these steps:
+
+1. Clone the repository
+
+```
+cd your-folder-name
+git clone https://github.com/CH-Low/ubongo3d.git
+```
+
+2. Install dependencies:
+```
+npm install
+```
+
+3. Run the app:
+```
+npm run dev
+```
 
 ## Resources Used
 
