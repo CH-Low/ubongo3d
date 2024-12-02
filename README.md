@@ -10,6 +10,10 @@ Note: There can be more than one alternate solutions, but I aim to keep the tool
 
 This is an unofficial app developed as a private project and is not affiliated with KOSMOS. This app only supports the 2021 English edition of Ubongo 3D.
 
+## Browsing
+
+The web version is available [here](https://ubongo-3d-d2125.web.app/).
+
 ## Devlopment
 Developed in React with Vite.
 
