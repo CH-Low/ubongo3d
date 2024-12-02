@@ -3,6 +3,7 @@
 This is a fan-made too desidned to show solutions.
 
 Note: There can be more than one alternate solutions, but I aim to keep the tool straigtforward and won't be adding additional features.
+
 ![6226361205535128849](https://github.com/user-attachments/assets/163cc098-e5ad-410d-aef2-843ef21c11c8)
 
 ## Disclaimer
