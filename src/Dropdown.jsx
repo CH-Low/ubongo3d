@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import useOutsideAlerter from './useOutsideAlerter';
+import useOutsideAlerter from './hooks/useOutsideAlerter';
 
 export default function Dropdown({ description, items, onChange }) {
   const [isOpen, setIsOpen] = useState(false);

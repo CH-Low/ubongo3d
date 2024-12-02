@@ -1,11 +1,3 @@
-const firebaseData = {
-    "1:1": {
-        "A": "filepath",
-        "B": "filepath"
-    }
-}
-
-
 export const data = {
     "1-1": ["A", "B"],
     "1-2": ["A", "B"],

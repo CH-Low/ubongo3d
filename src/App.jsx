@@ -7,6 +7,11 @@ import './App.css';
 import Dropdown from './Dropdown';
 import { data } from './data';
 
+import { useGetDoc } from "./hooks/useGetDoc.js";
+import { collection, getDocs, query } from "firebase/firestore";
+import { db } from "./firebase.config.js";
+import { usePostImages } from './hooks/usePostImages.js';
+
 function App() {
   // const [requestAnimationId, setRequestAnimationId] = useState();
   const [buttonSelected, setButtonSelected] = useState('A');
@@ -14,9 +19,16 @@ function App() {
   const [model, setModel] = useState();
   const [level, setLevel] = useState([1, 1]);
 
-  useEffect(() => {
-    loadModel(`/assets/level ${level[0]}/${level.join('-')}${buttonSelected}.glb`);
+  // usePostImages();
 
+  // const q = query(collection(db, "solutions"))
+  // const getSolutionsPromise = getDocs(q);
+  // const results = useGetDoc(getSolutionsPromise);
+
+  useEffect(() => {
+    const file = "https://firebasestorage.googleapis.com/v0/b/ubongo-3d-d2125.firebasestorage.app/o/level%201%2F1-1A.glb?alt=media&token=b1fc4338-56ac-4369-b26e-d35501c653cf";
+    // loadModel(`/assets/level ${level[0]}/${level.join('-')}${buttonSelected}.glb`);
+    loadModel(file);
     // Cleanup function on component unmount
     return () => {
       removeModel();
@@ -29,6 +41,7 @@ function App() {
     newLayout.animate();
 
     const glftLoader = new GLTFLoader();
+    glftLoader.setCrossOrigin("anonymous");
     glftLoader.load(glbFile, (gltfScene) => {
       setModel(gltfScene);
       gltfScene.scene.position.x = 0;
