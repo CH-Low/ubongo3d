@@ -1,3 +1,4 @@
+import './Dropdown.css';
 import { useEffect, useRef, useState } from 'react';
 import useOutsideAlerter from './hooks/useOutsideAlerter';
 
